@@ -1,6 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Book.css';
+import {
+    BookFlexContentLeft,
+    BookModificationContent,
+    InputTitle,
+    TextareaStyled,
+} from './BookStyles';
 
 function BookModification({
     selectedBook,
@@ -10,12 +15,11 @@ function BookModification({
     deleteBook,
 }) {
     return (
-        <div className="BookFlexContentLeft">
+        <BookFlexContentLeft>
             <h2>Selected Book</h2>
-            <div className="BookModificationContent">
-                <p>Title:</p>
-                <textarea
-                    className="TextareaShort"
+            <BookModificationContent>
+                <InputTitle>Title:</InputTitle>
+                <TextareaStyled
                     type="text"
                     value={selectedBook.title}
                     onChange={(event) => {
@@ -26,9 +30,8 @@ function BookModification({
                         });
                     }}
                 />
-                <p>Author:</p>
-                <textarea
-                    className="TextareaShort"
+                <InputTitle>Author:</InputTitle>
+                <TextareaStyled
                     type="text"
                     value={selectedBook.author}
                     onChange={(event) => {
@@ -39,9 +42,9 @@ function BookModification({
                         });
                     }}
                 />
-                <p>Description:</p>
-                <textarea
-                    className="TextareaTall"
+                <InputTitle>Description:</InputTitle>
+                <TextareaStyled
+                    tall
                     type="text"
                     value={selectedBook.description}
                     onChange={(event) => {
@@ -76,8 +79,8 @@ function BookModification({
                 >
                     Delete
                 </button>
-            </div>
-        </div>
+            </BookModificationContent>
+        </BookFlexContentLeft>
     );
 }
 

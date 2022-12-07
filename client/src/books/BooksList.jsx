@@ -1,23 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Book.css';
+import { BookBtn, BookFlexContentRight } from './BookStyles';
 
 function Books({ books, setSelectedBook }) {
     return (
-        <div className="BookFlexContentRight">
+        <BookFlexContentRight>
             <h2>Books</h2>
             {books.map((book) => (
-                <button
+                <BookBtn
                     key={book.id}
-                    className="BookBtn"
                     type="button"
                     onClick={() => setSelectedBook(book)}
                 >
                     {book.title}{' '}
                     {book.author.length > 0 && <>by {book.author}</>}
-                </button>
+                </BookBtn>
             ))}
-        </div>
+        </BookFlexContentRight>
     );
 }
 

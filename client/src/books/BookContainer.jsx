@@ -2,7 +2,7 @@ import React from 'react';
 import { GetBooksApiCall, BookApiCall } from '../api';
 import BookModification from './BookModification';
 import Books from './BooksList';
-import './Book.css';
+import { BookFlexContainer } from './BookStyles';
 
 function BookContainer() {
     const [fetchedBooks, setFetchedBooks] = React.useState([]);
@@ -40,7 +40,7 @@ function BookContainer() {
     }, []);
 
     return (
-        <div className="BookFlexContainer">
+        <BookFlexContainer>
             <BookModification
                 selectedBook={selectedBook}
                 setSelectedBook={setSelectedBook}
@@ -49,7 +49,7 @@ function BookContainer() {
                 deleteBook={RemoveBook}
             />
             <Books books={fetchedBooks} setSelectedBook={setSelectedBook} />
-        </div>
+        </BookFlexContainer>
     );
 }
 

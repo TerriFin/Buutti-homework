@@ -1,12 +1,12 @@
 import React from 'react';
 import BookContainer from '../books/BookContainer';
-import './App.css';
+import AppStyle from './AppStyles';
 
 function App() {
     return (
-        <div className="App">
+        <AppStyle className="App">
             <BookContainer />
-        </div>
+        </AppStyle>
     );
 }
 

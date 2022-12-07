@@ -2,8 +2,12 @@ from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 
-from . import crud, models, schemas
+from . import book_crud, models, schemas
 from .database import SessionLocal, engine
+
+# Normally i would structure backend more, have controller folder, etcetc..
+# but since this project is so tiny, i feel like it would complicate this more than help.
+# So you just have to take my word for it :)
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -19,6 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Use this in Depends() to inject the singular open session into the request
 def get_db():
     db = SessionLocal()
     try:
@@ -28,17 +33,17 @@ def get_db():
 
 @app.get("/books", response_model=list[schemas.Book])
 async def get_books(db: Session = Depends(get_db)):
-    books = crud.get_books(db)
+    books = book_crud.get_books(db)
     return books
 
 @app.post("/books", response_model=schemas.Book)
 async def create_book(book: schemas.BookBase, db: Session = Depends(get_db)):
-    return crud.create_book(db, book=book)
+    return book_crud.create_book(db, book=book)
 
 @app.put("/books", response_model=schemas.Book)
 async def update_book(book: schemas.Book, db: Session = Depends(get_db)):
-    return crud.update_book(db, book=book)
+    return book_crud.update_book(db, book=book)
 
 @app.delete("/books")
 async def delete_book(book: schemas.Book, db: Session = Depends(get_db)):
-    crud.delete_book(db, book=book)
+    book_crud.delete_book(db, book=book)
