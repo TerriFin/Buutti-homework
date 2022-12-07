@@ -1,0 +1,49 @@
+.BookFlexContainer {
+    display: flex;
+}
+
+.BookFlexContentLeft {
+    flex: 2;
+    margin-left: 15x;
+    margin-right: 15px;
+}
+
+.BookModificationContent {
+    text-align: left;
+    padding-left: 30px;
+}
+
+p {
+    margin-bottom: 1px;
+}
+
+.TextareaShort {
+    width: 90%;
+    height: 30px;
+}
+
+.TextareaTall {
+    width: 90%;
+    height: 60px;
+}
+
+.BookFlexContentRight {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    margin-left: 15x;
+    margin-right: 15px;
+}
+
+.BookBtn {
+    border: none;
+    background-color: inherit;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.BookBtn:hover {
+    background: #eee;
+}
