@@ -21,6 +21,7 @@ function BookModification({
                 <InputTitle>Title:</InputTitle>
                 <TextareaStyled
                     type="text"
+                    aria-label="Book title input"
                     value={selectedBook.title}
                     onChange={(event) => {
                         event.preventDefault();
@@ -33,6 +34,7 @@ function BookModification({
                 <InputTitle>Author:</InputTitle>
                 <TextareaStyled
                     type="text"
+                    aria-label="Book author input"
                     value={selectedBook.author}
                     onChange={(event) => {
                         event.preventDefault();
@@ -46,6 +48,7 @@ function BookModification({
                 <TextareaStyled
                     tall
                     type="text"
+                    aria-label="Book description input"
                     value={selectedBook.description}
                     onChange={(event) => {
                         event.preventDefault();
@@ -56,6 +59,7 @@ function BookModification({
                     }}
                 />
                 <button
+                    aria-label="Book create button"
                     type="submit"
                     disabled={selectedBook.title.length === 0}
                     onClick={() => createBook()}
@@ -63,6 +67,7 @@ function BookModification({
                     Save New
                 </button>
                 <button
+                    aria-label="Book update button"
                     type="submit"
                     disabled={
                         selectedBook.title.length === 0 ||
@@ -73,6 +78,7 @@ function BookModification({
                     Save
                 </button>
                 <button
+                    aria-label="Book delete button"
                     type="submit"
                     disabled={selectedBook.id === -1}
                     onClick={() => deleteBook()}

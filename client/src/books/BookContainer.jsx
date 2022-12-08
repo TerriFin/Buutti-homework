@@ -2,9 +2,13 @@ import React from 'react';
 import { GetBooksApiCall, BookApiCall } from '../api';
 import BookModification from './BookModification';
 import Books from './BooksList';
-import { BookFlexContainer } from './BookStyles';
+import { BookContainerError, BookFlexContainer } from './BookStyles';
+
+// I went with a container-component design pattern for this project.
+// This components only job is to manage data and contain the components which then do the work with the said data.
 
 function BookContainer() {
+    const [fetchingError, setFetchingError] = React.useState();
     const [fetchedBooks, setFetchedBooks] = React.useState([]);
     const [selectedBook, setSelectedBook] = React.useState({
         id: -1,
@@ -13,15 +17,23 @@ function BookContainer() {
         description: '',
     });
 
+    const FetchBooks = () =>
+        GetBooksApiCall()
+            .then((data) => {
+                setFetchedBooks(data);
+                setFetchingError();
+            })
+            .catch((error) => setFetchingError(error.toString()));
+
     const AddBook = async () => {
         const newBook = await BookApiCall('POST', selectedBook);
         setSelectedBook(newBook);
-        GetBooksApiCall().then((data) => setFetchedBooks(data));
+        FetchBooks();
     };
 
     const updateBook = async () => {
         await BookApiCall('PUT', selectedBook);
-        GetBooksApiCall().then((data) => setFetchedBooks(data));
+        FetchBooks();
     };
 
     const RemoveBook = async () => {
@@ -32,11 +44,11 @@ function BookContainer() {
             author: '',
             description: '',
         });
-        GetBooksApiCall().then((data) => setFetchedBooks(data));
+        FetchBooks();
     };
 
     React.useEffect(() => {
-        GetBooksApiCall().then((data) => setFetchedBooks(data));
+        FetchBooks();
     }, []);
 
     return (
@@ -49,6 +61,11 @@ function BookContainer() {
                 deleteBook={RemoveBook}
             />
             <Books books={fetchedBooks} setSelectedBook={setSelectedBook} />
+            {fetchingError && (
+                <BookContainerError>
+                    There was an error accessing the books {fetchingError}
+                </BookContainerError>
+            )}
         </BookFlexContainer>
     );
 }

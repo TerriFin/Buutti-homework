@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { BookBtn, BookFlexContentRight } from './BookStyles';
 
+// I could have made this with mui and make it look better, but i instead decided to follow the illustration to the bitter end.
+
 function Books({ books, setSelectedBook }) {
     return (
         <BookFlexContentRight>
@@ -12,8 +14,8 @@ function Books({ books, setSelectedBook }) {
                     type="button"
                     onClick={() => setSelectedBook(book)}
                 >
-                    {book.title}{' '}
-                    {book.author.length > 0 && <>by {book.author}</>}
+                    {book.title +
+                        (book.author.length > 0 ? ` by ${book.author}` : '')}
                 </BookBtn>
             ))}
         </BookFlexContentRight>

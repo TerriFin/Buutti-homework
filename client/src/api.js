@@ -15,4 +15,6 @@ export const BookApiCall = async (method, data) =>
             'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
-    }).then((response) => response.json());
+    }).then((response) =>
+        response.status !== 204 ? response.json() : response
+    );

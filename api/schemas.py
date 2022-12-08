@@ -13,5 +13,5 @@ class Book(BookBase):
     id: int
 
     class Config:
-        orm_mode = True # This makes the schema check given dict in ["attribute"] and .attribute forms, making it work with our orm.
+        orm_mode = True # This makes the schema check given data in ["attribute"] and .attribute forms, making it work with our orm.
         

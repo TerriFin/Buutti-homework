@@ -14,4 +14,6 @@ pip install -r requirements.txt
 cd ../client/
 
 npm install
+
+export DATABASE=books.db
 npm run start-all
